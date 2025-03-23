@@ -1,0 +1,29 @@
+{% extends 'shop/base.html' %}
+{% load static %}
+
+{% block title %}Наши пользователи - My Shop{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+    <h1 class="text-center mb-4">Наши пользователи</h1>
+
+
+    <div class="row">
+        {% for user in users %}
+        <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+            <div class="card shadow-sm border-0 rounded-lg text-center">
+                <div class="card-body">
+                    <img src="{% static './'|add:user.photo %}" alt="{{ user.name }}" class="img-fluid rounded-circle mb-3" style="width: 100px; height: 100px; object-fit: cover;">
+                    <h5 class="card-title">{{ user.name }}</h5>
+                    <p class="text-muted">Возраст: <strong>{{ user.age }}</strong></p>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <div class="col-12 text-center">
+            <p class="text-danger">Пользователи не найдены.</p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
