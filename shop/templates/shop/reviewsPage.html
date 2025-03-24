@@ -1,24 +1,20 @@
 {% extends 'shop/basePage.html' %}
 {% load static %}
-
 {% block title %}Отзывы - My Shop{% endblock %}
-
 {% block content %}
-<link rel="stylesheet" href="{% static 'reviews.css' %}">
 
+<link rel="stylesheet" href="{% static 'reviews.css' %}">
 <div class="reviews-section">
     <h1 class="reviews-header">Отзывы клиентов</h1>
     <div class="reviews-list">
         {% for review in page_obj %}
         <div class="review-card">
             <div class="review-header">
-             
               <div class="review-author-info">
                 <h5 class="review-author">{{ review.author }}</h5>
                 <small class="review-date">{{ review.date|date:"d E Y" }}</small>
               </div>
             </div>
-            
             <div class="review-text">
               {{ review.text|truncatewords:25 }}
             </div>
@@ -29,18 +25,15 @@
         </div>
         {% endfor %}
     </div>
-
     <div class="pagination">
         <div class="step-links">
             {% if page_obj.has_previous %}
                 <a href="?page=1" class="pagination-link first-page">&laquo; Первая</a>
                 <a href="?page={{ page_obj.previous_page_number }}" class="pagination-link prev-page">Предыдущая</a>
             {% endif %}
-
             <span class="current-page">
                 Страница {{ page_obj.number }} из {{ page_obj.paginator.num_pages }}
             </span>
-
             {% if page_obj.has_next %}
                 <a href="?page={{ page_obj.next_page_number }}" class="pagination-link next-page">Следующая</a>
                 <a href="?page={{ page_obj.paginator.num_pages }}" class="pagination-link last-page">Последняя &raquo;</a>

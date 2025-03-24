@@ -4,7 +4,7 @@ from .models import Service, Review
 
 def home(request):
     """Главная страница с 3 активными услугами и 3 последними отзывами"""
-    services = Service.objects.filter(is_active=True)[:3]
+    services = Service.objects.all()[:3]
     treereviews = Review.objects.all().order_by('-date')[:3] 
     return render(request, 'shop/homePage.html', {
         'services': services,

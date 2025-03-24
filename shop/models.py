@@ -1,8 +1,8 @@
 from django.db import models
 from django.utils import timezone
-from django.db import models
-from django.utils import timezone
 from django.core.validators import MinValueValidator, MaxValueValidator
+from django.core.validators import MinLengthValidator, MaxLengthValidator
+
 
 class Review(models.Model):
     author = models.CharField("Автор", max_length=100)
@@ -42,8 +42,13 @@ class Service(models.Model):
     price = models.DecimalField('Цена', max_digits=8, decimal_places=2)
     image = models.ImageField('Изображение', upload_to='services/')
     service_type = models.CharField('Тип услуги', max_length=3, choices=SERVICE_TYPES)
-    is_active = models.BooleanField('Активно', default=True)
     created_at = models.DateTimeField('Дата создания', auto_now_add=True)
+    description = models.TextField(
+        'Описание',
+        validators=[
+            MinLengthValidator(250, message='Описание должно содержать минимум 150 символов'),
+            MaxLengthValidator(300, message='Описание должно содержать максимум 300 символов')
+        ])
 
     def __str__(self):
         return self.title

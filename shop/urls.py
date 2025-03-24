@@ -7,8 +7,8 @@ from django.views.generic.base import RedirectView
 
 
 urlpatterns = [
-    path('', views.home, name='home'),  # Основной URL
-    path('home/', RedirectView.as_view(url='/')),  # Редирект с /home/ на /
+    path('', views.home, name='home'), 
+    path('home/', RedirectView.as_view(url='/')),
     path('products/', views.products, name='products'),
     path('reviews/', views.user_reviews, name='user_reviews'),
 ]
