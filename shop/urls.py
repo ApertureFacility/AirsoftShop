@@ -11,6 +11,7 @@ urlpatterns = [
     path('home/', RedirectView.as_view(url='/')),
     path('products/', views.products, name='products'),
     path('reviews/', views.user_reviews, name='user_reviews'),
+    
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

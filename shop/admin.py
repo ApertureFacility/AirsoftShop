@@ -10,12 +10,12 @@ class ReviewAdmin(admin.ModelAdmin):
 @admin.register(Service)
 class ServiceAdmin(admin.ModelAdmin):
     list_display = ('title', 'service_type', 'price')
-    list_filter = ('service_type',)  # Исправлено: добавлена запятая
+    list_filter = ('service_type',)
     search_fields = ('title', 'description')
     
     def get_form(self, request, obj=None, **kwargs):
         form = super().get_form(request, obj, **kwargs)
-        form.base_fields['description'].help_text = 'Рекомендуемая длина: 100-300 символов'
+        form.base_fields['description'].help_text = 'Рекомендуемая длина: 250-300 символов'
         return form
     
     fieldsets = (

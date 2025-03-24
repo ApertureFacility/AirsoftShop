@@ -3,7 +3,8 @@
 {% block title %}Отзывы - My Shop{% endblock %}
 {% block content %}
 
-<link rel="stylesheet" href="{% static 'reviews.css' %}">
+<link rel="stylesheet" href="{% static 'css/review.css' %}">
+
 <div class="reviews-section">
     <h1 class="reviews-header">Отзывы клиентов</h1>
     <div class="reviews-list">
@@ -18,6 +19,12 @@
             <div class="review-text">
               {{ review.text|truncatewords:25 }}
             </div>
+            <button class="read-more-btn" 
+        data-text="{{ review.text}}"
+        data-author="{{ review.author }}"
+        data-date="{{ review.date|date:'d E Y'}}">
+    Читать полностью
+</button>
           </div>
         {% empty %}
         <div class="no-reviews">
@@ -25,20 +32,22 @@
         </div>
         {% endfor %}
     </div>
-    <div class="pagination">
-        <div class="step-links">
-            {% if page_obj.has_previous %}
-                <a href="?page=1" class="pagination-link first-page">&laquo; Первая</a>
-                <a href="?page={{ page_obj.previous_page_number }}" class="pagination-link prev-page">Предыдущая</a>
-            {% endif %}
-            <span class="current-page">
-                Страница {{ page_obj.number }} из {{ page_obj.paginator.num_pages }}
-            </span>
-            {% if page_obj.has_next %}
-                <a href="?page={{ page_obj.next_page_number }}" class="pagination-link next-page">Следующая</a>
-                <a href="?page={{ page_obj.paginator.num_pages }}" class="pagination-link last-page">Последняя &raquo;</a>
-            {% endif %}
+    <!-- Пагинация -->
+</div>
+
+<!-- Модальное окно -->
+<div id="reviewModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <div class="modal-header">
+            <h3 id="modalAuthor"></h3>
+            <small id="modalDate"></small>
+        </div>
+        <div class="modal-body">
+            <p id="modalText"></p>
         </div>
     </div>
 </div>
+
+<script src="{% static 'js/review.js' %}"></script>
 {% endblock %}

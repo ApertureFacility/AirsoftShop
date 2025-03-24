@@ -46,7 +46,7 @@ class Service(models.Model):
     description = models.TextField(
         'Описание',
         validators=[
-            MinLengthValidator(250, message='Описание должно содержать минимум 150 символов'),
+            MinLengthValidator(250, message='Описание должно содержать минимум 250 символов'),
             MaxLengthValidator(300, message='Описание должно содержать максимум 300 символов')
         ])
 

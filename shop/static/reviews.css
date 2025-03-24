@@ -1,4 +1,3 @@
-/* Основные стили */
 .reviews-section {
     max-width: 1200px;
     margin: 0 auto;
@@ -11,7 +10,7 @@
     color: #333;
 }
 
-/* Форма обновления */
+
 .reviews-update-form {
     text-align: center;
     margin-bottom: 30px;
@@ -31,7 +30,7 @@
     background-color: #3a5f8a;
 }
 
-/* Карточка отзыва */
+
 .review-card {
     background: white;
     border-radius: 8px;
@@ -93,7 +92,7 @@
     text-decoration: underline;
 }
 
-/* Пагинация */
+
 .pagination {
     margin-top: 40px;
     display: flex;
@@ -130,7 +129,7 @@
     padding: 0 20px;
   }
   
-  /* Заголовок секции */
+  
   .section-title {
     text-align: center;
     font-size: 2rem;
@@ -150,14 +149,14 @@
     border-radius: 2px;
   }
   
-  /* Сетка отзывов */
+
   .reviews-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 30px;
   }
   
-  /* Карточка отзыва */
+
   .review-card {
     background: #fff;
     border-radius: 10px;
@@ -172,7 +171,7 @@
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
   }
   
-  /* Шапка карточки */
+
   .review-header {
     display: flex;
     align-items: center;
@@ -180,13 +179,6 @@
     gap: 15px;
   }
   
-  .review-avatar {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 2px solid #f8fafc;
-  }
   
   .review-author-info {
     flex: 1;
@@ -217,17 +209,7 @@
   }
   
  
-  
-  /* Ссылка "Читать полностью" */
-  .read-more {
-    display: inline-flex;
-    align-items: center;
-    color: #4a76a8;
-    text-decoration: none;
-    font-size: 0.9rem;
-    font-weight: 500;
-    transition: all 0.2s;
-  }
+
   
 /* Адаптивность */
 @media (max-width: 768px) {
