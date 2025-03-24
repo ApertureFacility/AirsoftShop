@@ -4,6 +4,7 @@
 {% block content %}
 
 <link rel="stylesheet" href="{% static 'reviews.css' %}">
+<link rel="stylesheet" href="{% static 'css/review.css' %}">
 <section class="hero bg-dark text-light py-5"style="background-position: center; background-repeat: no-repeat; width:100%;height:550px;background-size: cover;background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('{% static 'alpha-airsoft-ireland.jpg' %}');">
   <div class="container text-center">
     <h1 class="display-4 mb-4 fw-bold">Профессиональный ремонт аирсофт приводов</h1>
@@ -81,6 +82,7 @@
       </div>
     </div>
 </section>
+<!-- Вставьте этот код в секцию с отзывами вместо текущего блока -->
 <div class="home-reviews-section">
   <h2 class="section-title">Последние отзывы</h2>
   <div class="reviews-grid">
@@ -95,13 +97,16 @@
                   <small class="review-date">{{ review.date|date:"d M Y" }}</small>
               </div>
           </div>
-          
           <div class="review-text">
               {{ review.text|truncatewords:20 }}
-              {% if review.vk_discussion_url %}
-              <a href="{{ review.vk_discussion_url }}" target="_blank" class="read-more">Читать полностью</a>
-              {% endif %}
           </div>
+          <button class="read-more-btn" 
+                  data-text="{{ review.text }}"
+                  data-author="{{ review.author }}"
+                  data-date="{{ review.date|date:'d E Y' }}"
+                  data-id="{{ review.id }}">
+              Читать полностью
+          </button>
       </div>
       {% empty %}
       <p class="no-reviews">Пока нет отзывов</p>
@@ -111,6 +116,23 @@
     <a href="{% url 'user_reviews' %}" class="btn btn-primary btn-lg">Посмотреть все отзывы</a>
   </div>
 </div>
+
+<!-- Добавьте модальное окно в конец файла перед закрывающим тегом block content -->
+<div id="reviewModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <div class="modal-header">
+            <h3 id="modalAuthor"></h3>
+            <small id="modalDate"></small>
+        </div>
+        <div class="modal-body">
+            <p id="modalText"></p>
+        </div>
+    </div>
+</div>
+
+<!-- Подключите JavaScript (убедитесь, что путь правильный) -->
+<script src="{% static 'js/review.js' %}"></script>
 <section class="bg-primary text-light py-5">
   <div class="container text-center">
     <h2 class="mb-4">Остались вопросы?</h2>

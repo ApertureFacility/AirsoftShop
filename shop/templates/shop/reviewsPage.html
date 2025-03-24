@@ -20,11 +20,12 @@
               {{ review.text|truncatewords:25 }}
             </div>
             <button class="read-more-btn" 
-        data-text="{{ review.text}}"
-        data-author="{{ review.author }}"
-        data-date="{{ review.date|date:'d E Y'}}">
-    Читать полностью
-</button>
+            data-text="{{ review.text}}"
+            data-author="{{ review.author }}"
+            data-date="{{ review.date|date:'d E Y'}}"
+            data-id="{{ review.id }}">
+            Читать полностью
+        </button>
           </div>
         {% empty %}
         <div class="no-reviews">
@@ -32,10 +33,8 @@
         </div>
         {% endfor %}
     </div>
-    <!-- Пагинация -->
 </div>
 
-<!-- Модальное окно -->
 <div id="reviewModal" class="modal">
     <div class="modal-content">
         <span class="close">&times;</span>

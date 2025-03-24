@@ -1,7 +1,9 @@
 document.addEventListener('DOMContentLoaded', function() {
     // Обработчики для модального окна
     const modal = document.getElementById('reviewModal');
-    const closeBtn = document.querySelector('.close');
+    if (!modal) return;
+    
+    const closeBtn = modal.querySelector('.close');
     
     // Вешаем обработчики на все кнопки "Читать полностью"
     document.querySelectorAll('.read-more-btn').forEach(btn => {
@@ -9,24 +11,31 @@ document.addEventListener('DOMContentLoaded', function() {
             const text = this.dataset.text;
             const author = this.dataset.author;
             const date = this.dataset.date;
+            const id = this.dataset.id;
             
-            showFullReview(text, author, date);
+            showFullReview(text, author, date, id);
         });
     });
     
-    // Функция показа модального окна
-    function showFullReview(text, author, date) {
+    // Функция показа модального окна (теперь принимает id как параметр)
+    function showFullReview(text, author, date, id) {
         document.getElementById('modalText').textContent = text;
         document.getElementById('modalAuthor').textContent = author;
         document.getElementById('modalDate').textContent = date;
         modal.style.display = 'block';
         document.body.style.overflow = 'hidden';
+        
+        // Добавляем ID отзыва в URL
+        if (id) {
+            history.pushState(null, null, `#review-${id}`);
+        }
     }
     
     // Закрытие модального окна
     closeBtn.addEventListener('click', function() {
         modal.style.display = 'none';
         document.body.style.overflow = 'auto';
+        history.replaceState(null, null, ' ');
     });
     
     // Закрытие при клике вне модального окна
@@ -34,6 +43,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (event.target === modal) {
             modal.style.display = 'none';
             document.body.style.overflow = 'auto';
+            history.replaceState(null, null, ' ');
         }
     });
     
@@ -42,14 +52,19 @@ document.addEventListener('DOMContentLoaded', function() {
         if (event.key === 'Escape' && modal.style.display === 'block') {
             modal.style.display = 'none';
             document.body.style.overflow = 'auto';
+            history.replaceState(null, null, ' ');
         }
     });
-});
-// Если вы хотите открывать отзывы в модальном окне при переходе по ссылке
-document.addEventListener('DOMContentLoaded', function() {
-    // Проверяем, есть ли в URL хэш с ID отзыва
+    
+    // Обработка открытия модалки по хэшу в URL
     if (window.location.hash && window.location.hash.startsWith('#review-')) {
         const reviewId = window.location.hash.replace('#review-', '');
-        // Здесь можно загрузить отзыв через AJAX или показать уже загруженный
+        const btn = document.querySelector(`.read-more-btn[data-id="${reviewId}"]`);
+        if (btn) {
+            const text = btn.dataset.text;
+            const author = btn.dataset.author;
+            const date = btn.dataset.date;
+            showFullReview(text, author, date, reviewId);
+        }
     }
 });
