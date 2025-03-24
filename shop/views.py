@@ -6,7 +6,7 @@ def home(request):
     """Главная страница с 3 активными услугами и 3 последними отзывами"""
     services = Service.objects.filter(is_active=True)[:3]
     treereviews = Review.objects.all().order_by('-date')[:3] 
-    return render(request, 'shop/home.html', {
+    return render(request, 'shop/homePage.html', {
         'services': services,
         'treereviews': treereviews
     })
@@ -14,7 +14,7 @@ def home(request):
 def products(request):
     """Страница всех продуктов/услуг"""
     services = Service.objects.all() 
-    return render(request, 'shop/products.html', {'services': services})
+    return render(request, 'shop/productsPage.html', {'services': services})
 
 def reviews_view(request):
     """Страница отзывов с пагинацией"""
@@ -30,9 +30,9 @@ def user_reviews(request):
     paginator = Paginator(reviews_list, 10)  
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
-    return render(request, 'shop/users.html', {'page_obj': page_obj})
+    return render(request, 'shop/reviewsPage.html', {'page_obj': page_obj})
 
 def users_view(request):
     """Страница пользователей (без изменений)"""
-    return render(request, 'shop/users.html')
+    return render(request, 'shop/reviewsPage.html')
 

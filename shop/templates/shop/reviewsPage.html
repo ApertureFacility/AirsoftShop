@@ -12,9 +12,7 @@
         {% for review in page_obj %}
         <div class="review-card">
             <div class="review-header">
-              <img src="{{ review.vk_avatar_url|default:'/static/images/default-avatar.jpg' }}" 
-                   alt="{{ review.author }}" 
-                   class="review-avatar">
+             
               <div class="review-author-info">
                 <h5 class="review-author">{{ review.author }}</h5>
                 <small class="review-date">{{ review.date|date:"d E Y" }}</small>
@@ -23,9 +21,6 @@
             
             <div class="review-text">
               {{ review.text|truncatewords:25 }}
-              <a href="{{ review.vk_discussion_url }}" class="read-more" target="_blank">
-                Читать полностью <i class="fas fa-external-link-alt"></i>
-              </a>
             </div>
           </div>
         {% empty %}

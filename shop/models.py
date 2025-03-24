@@ -6,10 +6,8 @@ from django.core.validators import MinValueValidator, MaxValueValidator
 
 class Review(models.Model):
     author = models.CharField("Автор", max_length=100)
-    author_avatar = models.URLField("Аватар автора", max_length=500, blank=True, null=True)
     text = models.TextField("Текст отзыва")
     date = models.DateTimeField("Дата отзыва", default=timezone.now)
-    vk_post_id = models.CharField("ID поста ВКонтакте", max_length=50, unique=True, blank=True, null=True)
     rating = models.PositiveSmallIntegerField(
         "Оценка",
         validators=[MinValueValidator(1), MaxValueValidator(5)],
@@ -23,8 +21,6 @@ class Review(models.Model):
         blank=True,
         null=True
     )
-    likes_count = models.PositiveIntegerField("Лайки", default=0)
-    is_approved = models.BooleanField("Одобрен", default=False)
     
     def __str__(self):
         return f"Отзыв от {self.author} ({self.date.strftime('%d.%m.%Y')})"
