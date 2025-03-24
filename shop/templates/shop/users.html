@@ -1,29 +1,56 @@
 {% extends 'shop/base.html' %}
 {% load static %}
 
-{% block title %}Наши пользователи - My Shop{% endblock %}
+{% block title %}Отзывы - My Shop{% endblock %}
 
 {% block content %}
-<div class="container py-4">
-    <h1 class="text-center mb-4">Наши пользователи</h1>
+<link rel="stylesheet" href="{% static 'reviews.css' %}">
 
-
-    <div class="row">
-        {% for user in users %}
-        <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
-            <div class="card shadow-sm border-0 rounded-lg text-center">
-                <div class="card-body">
-                    <img src="{% static './'|add:user.photo %}" alt="{{ user.name }}" class="img-fluid rounded-circle mb-3" style="width: 100px; height: 100px; object-fit: cover;">
-                    <h5 class="card-title">{{ user.name }}</h5>
-                    <p class="text-muted">Возраст: <strong>{{ user.age }}</strong></p>
-                </div>
+<div class="reviews-section">
+    <h1 class="reviews-header">Отзывы клиентов</h1>
+    <div class="reviews-list">
+        {% for review in page_obj %}
+        <div class="review-card">
+            <div class="review-header">
+              <img src="{{ review.vk_avatar_url|default:'/static/images/default-avatar.jpg' }}" 
+                   alt="{{ review.author }}" 
+                   class="review-avatar">
+              <div class="review-author-info">
+                <h5 class="review-author">{{ review.author }}</h5>
+                <small class="review-date">{{ review.date|date:"d E Y" }}</small>
+              </div>
             </div>
-        </div>
+            
+            <div class="review-text">
+              {{ review.text|truncatewords:25 }}
+              <a href="{{ review.vk_discussion_url }}" class="read-more" target="_blank">
+                Читать полностью <i class="fas fa-external-link-alt"></i>
+              </a>
+            </div>
+          </div>
         {% empty %}
-        <div class="col-12 text-center">
-            <p class="text-danger">Пользователи не найдены.</p>
+        <div class="no-reviews">
+            <p>Отзывов пока нет.</p>
         </div>
         {% endfor %}
+    </div>
+
+    <div class="pagination">
+        <div class="step-links">
+            {% if page_obj.has_previous %}
+                <a href="?page=1" class="pagination-link first-page">&laquo; Первая</a>
+                <a href="?page={{ page_obj.previous_page_number }}" class="pagination-link prev-page">Предыдущая</a>
+            {% endif %}
+
+            <span class="current-page">
+                Страница {{ page_obj.number }} из {{ page_obj.paginator.num_pages }}
+            </span>
+
+            {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}" class="pagination-link next-page">Следующая</a>
+                <a href="?page={{ page_obj.paginator.num_pages }}" class="pagination-link last-page">Последняя &raquo;</a>
+            {% endif %}
+        </div>
     </div>
 </div>
 {% endblock %}

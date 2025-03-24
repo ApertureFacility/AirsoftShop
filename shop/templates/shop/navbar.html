@@ -1,10 +1,12 @@
+{% load static %}
+
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
         <a class="navbar-brand" href="{% url 'home' %}">AIRSOFT WORKSHOP</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
+        <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'home' %}">Главная</a>
@@ -13,9 +15,19 @@
                     <a class="nav-link" href="{% url 'products' %}">Услуги</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'users' %}">Фотоотчеты ремонта</a>
+                    <a class="nav-link" href="{% url 'user_reviews' %}">Отзывы</a>
                 </li>
             </ul>
+            <div class="d-flex align-items-center ">
+                <span class="me-3 text-muted">Время работы: Пн-Сб: 10:00-20:00</span>
+                <span class="me-3 text-muted"> Вс: 10:00-18:00</span>
+                <a href="https://vk.com/random" target="_blank" class="me-2">
+                    <img src="{% static 'vklogo2.png' %}" alt="VK" style="width: 30px; height: 30px;">
+                </a>
+                <a href="https://t.me/random" target="_blank">
+                    <img src="{% static 'telegramm.png' %}" alt="Telegram" style="width: 30px; height: 30px;">
+                </a>
+            </div>
         </div>
     </div>
 </nav>

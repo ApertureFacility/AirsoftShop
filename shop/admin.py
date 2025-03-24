@@ -1,5 +1,13 @@
 from django.contrib import admin
-from .models import Service
+from .models import Service,Review
+from django.contrib import admin
+
+
+@admin.register(Review)
+class ReviewAdmin(admin.ModelAdmin):
+    list_display = ('author', 'date')
+    search_fields = ('author', 'text')
+    fields = ('author', 'text', 'date')
 
 @admin.register(Service)
 class ServiceAdmin(admin.ModelAdmin):
@@ -14,3 +22,4 @@ class ServiceAdmin(admin.ModelAdmin):
             'fields': ('image', 'service_type', 'is_active')
         }),
     )
+    
