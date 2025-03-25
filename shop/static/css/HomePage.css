@@ -214,16 +214,16 @@ body {
     overflow: hidden;
     box-shadow: var(--shadow);
     transition: var(--transition);
+    display: flex; /* Добавляем flex */
+    flex-direction: column; /* Вертикальное расположение */
 }
 
-.service:hover {
-    transform: translateY(-5px);
-    box-shadow: var(--shadow-md);
-}
+
 
 .service__image-container {
     height: 220px;
     overflow: hidden;
+    flex-shrink: 0; /* Запрещаем сжатие */
 }
 
 .service__image {
@@ -239,6 +239,9 @@ body {
 
 .service__content {
     padding: 20px;
+    flex: 1; /* Занимает всё доступное пространство */
+    display: flex; /* Добавляем flex */
+    flex-direction: column; /* Вертикальное расположение */
 }
 
 .service__title {
@@ -246,19 +249,31 @@ body {
     font-weight: 600;
     margin: 0 0 10px;
     color: var(--dark);
+    line-height: 1.3; /* Фиксируем межстрочный интервал */
+    height: 57px;
 }
 
 .service__description {
     color: var(--gray);
     margin-bottom: 15px;
+    flex: 1; /* Занимает всё свободное место */
+    min-height: 3.6em; /* Минимальная высота (примерно 2 строки) */
+    overflow: hidden; /* Обрезаем лишний текст */
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* Ограничиваем количество строк */
+    -webkit-box-orient: vertical;
 }
 
 .service__price {
     font-size: 1.25rem;
     font-weight: 700;
     color: var(--primary);
+    margin-top: auto; /* Прижимаем к низу */
+    padding-top: 10px; /* Отступ от текста */
 }
-
+.service__info{
+    padding: 15px;
+}
 /* Отзывы */
 .reviews {
     background-color: var(--light);
