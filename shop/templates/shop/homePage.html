@@ -4,8 +4,11 @@
 {% block content %}
 
 <link rel="stylesheet" href="{% static 'css/HomePage.css' %}">
+<link rel="stylesheet" href="{% static 'css/ModalStyles.css' %}">
 <link rel="stylesheet" href="{% static 'css/review.css' %}">
 <link rel="stylesheet" href="{% static '/reset.css' %}">
+
+
 <section class="hero" style="background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('{% static 'alpha-airsoft-ireland.jpg' %}');">
   <div class="hero__container">
     <h1 class="hero__title">Профессиональный ремонт аирсофт приводов</h1>
@@ -82,13 +85,13 @@
               </div>
           </div>
           <p class="review__text">{{ review.text|truncatewords:20 }}</p>
-          <button class="button button--secondary" 
-        data-text="{{ review.text }}"
-        data-author="{{ review.author }}"
-        data-date="{{ review.date|date:'d E Y' }}"
-        data-id="{{ review.id }}">
-    Читать полностью
-</button>
+          <button class="read-more-btn" 
+            data-text="{{ review.text}}"
+            data-author="{{ review.author }}"
+            data-date="{{ review.date|date:'d E Y'}}"
+            data-id="{{ review.id }}">
+            Читать полностью
+        </button>
       </div>
       {% empty %}
       <p class="reviews__empty">Пока нет отзывов</p>
@@ -125,10 +128,13 @@
 <div id="reviewModal" class="modal">
   <div class="modal-content">
       <span class="close">&times;</span>
-      <h3 id="modalAuthor"></h3>
-      <small id="modalDate"></small>
-      <p id="modalText"></p>
+      <div class="modal-header">
+          <h3 id="modalAuthor"></h3>
+          <small id="modalDate"></small>
+      </div>
+      <div class="modal-body">
+          <p id="modalText"></p>
+      </div>
   </div>
 </div>
-
 {% endblock %}

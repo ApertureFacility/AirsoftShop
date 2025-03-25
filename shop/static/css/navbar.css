@@ -69,7 +69,7 @@
     height: 30px;
 }
 
-/* Адаптивное меню */
+
 @media (max-width: 768px) {
     .nav__toggle {
         display: block;
