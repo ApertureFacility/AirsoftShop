@@ -6,18 +6,18 @@ document.addEventListener('DOMContentLoaded', function() {
     const closeBtn = modal.querySelector('.close');
     
     // Вешаем обработчики на все кнопки "Читать полностью"
-    document.querySelectorAll('.read-more-btn').forEach(btn => {
+    document.querySelectorAll('.button--secondary').forEach(btn => {
         btn.addEventListener('click', function() {
             const text = this.dataset.text;
-            const author = this.dataset.author;
-            const date = this.dataset.date;
-            const id = this.dataset.id;
+            const author = this.closest('.review-card').querySelector('.review-author').textContent;
+            const date = this.closest('.review-card').querySelector('.review-date').textContent;
+            const id = this.dataset.id || ''; // id может отсутствовать
             
             showFullReview(text, author, date, id);
         });
     });
     
-    // Функция показа модального окна (теперь принимает id как параметр)
+    // Функция показа модального окна
     function showFullReview(text, author, date, id) {
         document.getElementById('modalText').textContent = text;
         document.getElementById('modalAuthor').textContent = author;
@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', function() {
         modal.style.display = 'block';
         document.body.style.overflow = 'hidden';
         
-        // Добавляем ID отзыва в URL
+        // Добавляем ID отзыва в URL, если он есть
         if (id) {
             history.pushState(null, null, `#review-${id}`);
         }
@@ -59,12 +59,23 @@ document.addEventListener('DOMContentLoaded', function() {
     // Обработка открытия модалки по хэшу в URL
     if (window.location.hash && window.location.hash.startsWith('#review-')) {
         const reviewId = window.location.hash.replace('#review-', '');
-        const btn = document.querySelector(`.read-more-btn[data-id="${reviewId}"]`);
+        const btn = document.querySelector(`.button--secondary[data-id="${reviewId}"]`);
         if (btn) {
             const text = btn.dataset.text;
-            const author = btn.dataset.author;
-            const date = btn.dataset.date;
+            const author = btn.closest('.review-card').querySelector('.review-author').textContent;
+            const date = btn.closest('.review-card').querySelector('.review-date').textContent;
             showFullReview(text, author, date, reviewId);
         }
     }
+});
+document.querySelectorAll('.button--secondary').forEach(btn => {
+    btn.addEventListener('click', function() {
+        const text = this.dataset.text;
+        const reviewElement = this.closest('.review'); // Исправленный селектор
+        const author = reviewElement.querySelector('.review__author').textContent;
+        const date = reviewElement.querySelector('.review__date').textContent;
+        const id = this.dataset.id || '';
+
+        showFullReview(text, author, date, id);
+    });
 });

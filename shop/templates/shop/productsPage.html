@@ -1,27 +1,28 @@
 {% extends 'shop/basePage.html' %}
+{% load static %}
 {% block title %}Услуги - Airsoft Repair Pro{% endblock %}
 {% block content %}
+<link rel="stylesheet" href="{% static 'css/ServicesPage.css' %}">
 
-<div class="container">
-    <h1 class="text-center my-4">Наши услуги</h1>
-    <div class="row g-4">
+<div class="services">
+    <h1 class="services__title">Наши услуги</h1>
+    <div class="services__grid">
         {% for service in services %}
-        <div class="col-md-6 col-lg-4">
-            <div class="card h-100">
-                <img src="{{ service.image.url }}" class="card-img-top" alt="{{ service.title }}" style="object-fit: cover; height: 200px;">
-                <div class="card-body d-flex flex-column">
-                    <h5 class="card-title">{{ service.title }}</h5>
-                    <p class="card-text">{{ service.description }}</p>
-                    <div class="d-flex justify-content-between align-items-center mt-auto">
-                        <span class="badge bg-primary">{{ service.price }} BYN</span>
-                        <a href="#" class="btn btn-outline-primary">Подробнее</a>
-                    </div>
+        <div class="service-card">
+            <img src="{{ service.image.url }}" class="service-card__image" alt="{{ service.title }}">
+            <div class="service-card__body">
+                <h5 class="service-card__title">{{ service.title }}</h5>
+                <p class="service-card__text">{{ service.description }}</p>
+                <div class="service-card__footer">
+                    <span class="service-card__price">{{ service.price }} BYN</span>
+                    <a href="#" class="service-card__button">Подробнее</a>
                 </div>
             </div>
         </div>
         {% empty %}
-        <p class="text-center">Пока нет доступных услуг.</p>
+        <p class="services__empty">Пока нет доступных услуг.</p>
         {% endfor %}
     </div>
 </div>
+
 {% endblock %}

@@ -1,0 +1,200 @@
+/* Общие стили */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+.section-title {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 2rem;
+}
+
+.button {
+    display: inline-block;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.button--primary {
+    background-color: #007bff;
+    color: white;
+}
+
+.button--secondary {
+    background-color: #6c757d;
+    color: white;
+}
+
+.button--light {
+    background-color: white;
+    color: #007bff;
+    border: 1px solid #007bff;
+}
+
+.centered {
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* Hero Section */
+.hero {
+    background-size: cover;
+    background-position: center;
+    height: 550px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+}
+
+.hero__container {
+    max-width: 800px;
+}
+
+.hero__title {
+    font-size: 2.5rem;
+    font-weight: bold;
+}
+
+.hero__subtitle {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+}
+
+/* Преимущества */
+.advantages__grid {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.advantages{
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    flex: 1;
+    padding: 20px;
+}
+.advantage_card{
+    background: rgb(205, 185, 185);
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    flex: 1;
+}
+
+.advantage__icon {
+    width: 50px;
+    height: 50px;
+    margin-bottom: 10px;
+}
+
+.advantage__title {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.advantage__list {
+    text-align: left;
+    padding-left: 20px;
+}
+
+/* Услуги */
+.services__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.service {
+    background: white;
+    padding: 15px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.service__image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.service__title {
+    font-size: 1.5rem;
+    margin: 10px 0;
+}
+
+.service__price {
+    font-size: 1.2rem;
+    color: #007bff;
+    font-weight: bold;
+}
+
+/* Отзывы */
+.reviews__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.reviews{
+    background: white;
+    padding: 15px;
+    margin: 15px;
+    border-radius: 10px;
+}
+
+.review__header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.review__avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.review__text {
+    margin: 10px 0;
+}
+
+
+.contact {
+    text-align: center;
+    background: #007bff;
+    color: white;
+    padding: 40px 20px;
+}
+
+.contact__title {
+    font-size: 2rem;
+}
+
+.contact__text {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+}
+
+
+.footer {
+    background: #333;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+
+.footer__icon {
+    width: 30px;
+    height: 30px;
+    margin: 0 5px;
+}
