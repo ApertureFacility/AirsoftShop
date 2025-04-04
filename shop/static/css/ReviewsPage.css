@@ -195,7 +195,28 @@
     line-height: 1.7;
     white-space: pre-line;
 }
-
+.review-rating {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin: 10px 0;
+    height: 30px;
+  }
+  
+  .star {
+    font-size: 24px;
+    color: lightgray;
+    transition: transform 0.2s ease;
+  }
+  
+  .star.filled {
+    color: gold;
+  }
+  
+  .star:hover {
+    transform: scale(1.2);
+  }
+  
 
 @media (max-width: 768px) {
     .reviews-list {

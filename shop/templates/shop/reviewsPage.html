@@ -8,7 +8,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="{% static 'css/navbar.css' %}">
 
-
 <div class="reviews-section">
     <h1 class="reviews-header">Отзывы клиентов</h1>
     <div class="reviews-list">
@@ -20,17 +19,29 @@
                 <small class="review-date">{{ review.date|date:"d E Y" }}</small>
               </div>
             </div>
+
+          <!-- ⭐ Звездочки внутри карточки отзыва -->
+<div class="review-rating">
+  {% for i in "12345" %}
+      {% if forloop.counter <= review.rating %}
+          <span class="star filled">★</span>
+      {% else %}
+          <span class="star">☆</span>
+      {% endif %}
+  {% endfor %}
+</div>
             <div class="review-text">
               {{ review.text|truncatewords:25 }}
             </div>
             <button class="read-more-btn" 
-            data-text="{{ review.text}}"
-            data-author="{{ review.author }}"
-            data-date="{{ review.date|date:'d E Y'}}"
-            data-id="{{ review.id }}">
-            Читать полностью
-        </button>
-          </div>
+    data-text="{{ review.text }}"
+    data-author="{{ review.author }}"
+    data-date="{{ review.date|date:'d E Y' }}"
+    data-id="{{ review.id }}"
+    data-rating="{{ review.rating }}">
+    Читать полностью
+</button>
+        </div>
         {% empty %}
         <div class="no-reviews">
             <p>Отзывов пока нет.</p>
@@ -43,9 +54,10 @@
     <div class="modal-content">
         <span class="close">&times;</span>
         <div class="modal-header">
-            <h3 id="modalAuthor"></h3>
-            <small id="modalDate"></small>
-        </div>
+          <h3 id="modalAuthor"></h3>
+          <small id="modalDate"></small>
+          <div id="modalRating" class="review-rating"></div> 
+      </div>
         <div class="modal-body">
             <p id="modalText"></p>
         </div>

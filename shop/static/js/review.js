@@ -21,13 +21,27 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('modalText').textContent = text;
         document.getElementById('modalAuthor').textContent = author;
         document.getElementById('modalDate').textContent = date;
+    
+        const rating = parseInt(document.querySelector(`.read-more-btn[data-id="${id}"]`).dataset.rating) || 0;
+        const ratingContainer = document.getElementById('modalRating');
+        ratingContainer.innerHTML = ''; // Очистка перед вставкой
+    
+        for (let i = 1; i <= 5; i++) {
+            const star = document.createElement('span');
+            star.classList.add('star');
+            if (i <= rating) star.classList.add('filled');
+            star.textContent = i <= rating ? '★' : '☆';
+            ratingContainer.appendChild(star);
+        }
+    
         modal.style.display = 'block';
         document.body.style.overflow = 'hidden';
-        
+    
         if (id) {
             history.pushState(null, null, `#review-${id}`);
         }
     }
+    
     
 
     closeBtn.addEventListener('click', closeModal);
