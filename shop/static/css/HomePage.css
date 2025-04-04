@@ -334,6 +334,24 @@
     height: 20px;
     background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,1));
 }
+.review-rating {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin: 8px 0;
+    height: 28px;
+  }
+  
+  .star {
+    font-size: 22px;
+    color: lightgray;
+    transition: transform 0.2s ease;
+  }
+  
+  .star.filled {
+    color: gold;
+  }
+  
 
 /* Контакты */
 .contact {

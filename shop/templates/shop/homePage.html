@@ -78,24 +78,39 @@
   <div class="reviews__grid">
       {% for review in treereviews %}
       <div class="review">
-          <div class="review__header">
-              {% if review.vk_avatar_url %}
-              <img src="{{ review.vk_avatar_url }}" alt="{{ review.author }}" class="review__avatar">
-              {% endif %}
-              <div class="review__info">
-                  <h5 class="review__author">{{ review.author }}</h5>
-                  <small class="review__date">{{ review.date|date:"d M Y" }}</small>
-              </div>
-          </div>
-          <p class="review__text">{{ review.text|truncatewords:20 }}</p>
-          <button class="read-more-btn" 
-            data-text="{{ review.text}}"
+        <div class="review__header">
+            {% if review.vk_avatar_url %}
+            <img src="{{ review.vk_avatar_url }}" alt="{{ review.author }}" class="review__avatar">
+            {% endif %}
+            <div class="review__info">
+                <h5 class="review__author">{{ review.author }}</h5>
+                <small class="review__date">{{ review.date|date:"d M Y" }}</small>
+            </div>
+        </div>
+    
+        <!-- ⭐ Звёзды -->
+        <div class="review-rating">
+            {% for i in "12345" %}
+                {% if forloop.counter <= review.rating %}
+                    <span class="star filled">★</span>
+                {% else %}
+                    <span class="star">☆</span>
+                {% endif %}
+            {% endfor %}
+        </div>
+    
+        <p class="review__text">{{ review.text|truncatewords:20 }}</p>
+    
+        <button class="read-more-btn" 
+            data-text="{{ review.text }}"
             data-author="{{ review.author }}"
-            data-date="{{ review.date|date:'d E Y'}}"
-            data-id="{{ review.id }}">
+            data-date="{{ review.date|date:'d E Y' }}"
+            data-id="{{ review.id }}"
+            data-rating="{{ review.rating }}">
             Читать полностью
         </button>
-      </div>
+    </div>
+    
       {% empty %}
       <p class="reviews__empty">Пока нет отзывов</p>
       {% endfor %}
@@ -136,8 +151,10 @@
           <small id="modalDate"></small>
       </div>
       <div class="modal-body">
+          <div id="modalRating" class="review-rating"></div>
           <p id="modalText"></p>
       </div>
   </div>
 </div>
+
 {% endblock %}
