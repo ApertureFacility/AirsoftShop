@@ -4,16 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Shop{% endblock %}</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'reset.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/navbar.css' %}">
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
 </head>
 <body>
-
     {% include 'shop/navbar.html' %}
-    {% load static %}
-    <div class="">
-        {% block content %}
-        {% endblock %}
-    </div>
-
-
+    {% block content %}{% endblock %}
 </body>
 </html>
